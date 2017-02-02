@@ -1,0 +1,78 @@
+ {% load staticfiles %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>Henry | Django Belt Exam</title>
+
+ 	<!-- FONTAWESOME -->
+ 	<script src="https://use.fontawesome.com/41aef5863b.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+ 	<!-- MAIN CSS -->
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+
+ </head>
+ <body>
+	
+	<!-- ::MAIN CONTAINER
+	======================================== -->
+	<div class="main-container">
+		
+		<div class="container">
+
+			<!-- ::NEW ITEM
+			======================================== -->
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<!-- <h1 class="panel-tittle">Product</h1> -->
+							<a href="/login/logout" name="home" type="submit" class="home_btn pull-right btn btn-sm btn-default" value="Home"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+							<a href="/dashboard" name="home" type="submit" class="home_btn pull-right btn btn-sm btn-primary" value="Home"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+						</div><!-- //panel-heading -->
+						<div class="panel-body">
+							<div class="center-me" id="labelHelper">
+								<h3>Create a New Wish List Item</h3>
+								<div class="row">
+								<div class="col-md-8">
+									<!-- ::CREATE A NEW ITEM/PRODUCT
+									======================================== -->
+									<h5>Item/Product:</h5>
+									<form action="/wish_items/createItem" method="POST">
+										{% csrf_token %}
+										<div class="form-group">
+											{% if messages %}
+											    {% for message in messages %}
+												    {% if 'itemName' in error.tags %}
+														<p class="error_message"><span>{{ error }}</span></p>
+												    {% endif %}
+											    {% endfor %}
+											{% endif %}
+											<input type="text" name="itemName" class="form-control" id="itemName" placeholder="Please enter item name">
+										</div>
+										<input type="submit" class="btn btn-primary pull-right" value="Add">
+									</form>
+								</div><!-- //col-md-6 -->
+								</div><!-- //row -->
+							</div><!-- //center-me -->
+							<h6>{{DateTime}}</h6>
+							<h4>Author: {{AuthorName}}</h4>
+						</div><!-- //panel-body -->
+					</div><!-- //panel -->
+				</div><!-- //col-md-6 -->
+			</div><!-- //row -->
+		</div><!-- //container -->
+	</div><!-- //main-container -->
+
+	<!-- jQUERY FILE-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<!-- MAIN JAVASCRIPT -->
+ 	<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+ </body>
+ </html>
